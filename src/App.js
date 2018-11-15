@@ -8,8 +8,9 @@ class App extends Component {
     persons: [
       {name: 'Igor', age: 32},
       {name: 'Reeem', age: 26},
-      {name: 'Stephanie', age: 28}
-    ]
+      {name: 'Stephanie', age: 28},
+    ],
+      showPersons: false
   }
 
   switchNameHandler = (newName) => {
@@ -33,36 +34,56 @@ class App extends Component {
     ]}); 
   }
 
+  togglePersonHandler = () => {
+    const doesShow = this.state.showPersons;
+    this.setState({showPersons: !doesShow});
+    console.log('toggled');
+  }
+
+  
+
   render() {
 
-    const style = {
-      backgroundColor: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    };
+    let peronas = null;
+
+    if(this.state.showPersons){
+      peronas = (
+        <div>
+          <h1>Hi I am a React App</h1>
+          <p onMouseEnter={this.focusHandler}>This is really working</p>
+          <button   
+          onClick={this.switchNameHandler.bind(this, 'Igorka')}>Switch Name</button>
+          <Person 
+            name={this.state.persons[0].name} 
+            age={this.state.persons[0].age}/>
+          <Person 
+            name={this.state.persons[1].name}  
+            age={this.state.persons[1].age}
+            click={this.switchNameHandler.bind(this, 'Igor!') }
+            mousEnt={this.focusHandler}
+            changed={this.nameChangedHandler}
+            >My Hobbies: Racing </Person>
+          <Person 
+          // we can use this but sometime can do some unexpected results prefered to use bind() instead!!!
+            click={() => this.switchNameHandler('Shitzu!!')}
+            name={this.state.persons[2].name} 
+            age={this.state.persons[2].age}/>
+          </div>
+      )
+    }
+
+    // const style = {
+    //   backgroundColor: 'white',
+    //   font: 'inherit',
+    //   border: '1px solid blue',
+    //   padding: '8px',
+    //   cursor: 'pointer'
+    // };
     return (
       <div className="App">
-        <h1>Hi I am a React App</h1>
-        <p onMouseEnter={this.focusHandler}>This is really working</p>
-        <button style={style}  
-        onClick={this.switchNameHandler.bind(this, 'Igorka')}>Switch Name</button>
-        <Person 
-          name={this.state.persons[0].name} 
-          age={this.state.persons[0].age}/>
-        <Person 
-          name={this.state.persons[1].name}  
-          age={this.state.persons[1].age}
-          click={this.switchNameHandler.bind(this, 'Igor!') }
-          mousEnt={this.focusHandler}
-          changed={this.nameChangedHandler}
-          >My Hobbies: Racing </Person>
-        <Person 
-        // we can use this but sometime can do some unexpected results prefered to use bind() instead!!!
-          click={() => this.switchNameHandler('Shitzu!!')}
-          name={this.state.persons[2].name} 
-          age={this.state.persons[2].age}/>
+        <button onClick={this.togglePersonHandler}>Toggle View</button>
+        
+        {peronas}
       </div>
     );
   }

@@ -13,14 +13,13 @@ class App extends Component {
       showPersons: false
   }
 
-  switchNameHandler = (newName) => {
-    // console.log('Was Clicked');
-    // DON'T DO THIS!!! this.state.persons[0].name = 'Maxmillian';
-    this.setState({persons: [
-      {name: newName, age: 32},
-      {name: 'Reeem', age: 25},
-      {name: 'Archie', age: 2}
-    ]});
+  deletePersonHandler = (peronIndex) => {
+    // traditional
+    // const persons = this.state.persons.slice();//copies the full array and returns & returns a new which is stored here
+    // or spread operator: 
+    const persons = [...this.state.persons]; // new array from the old array objects
+    persons.splice(peronIndex, 1);// removes 1 element from the array
+    this.setState({persons: persons}) // we set it back with removed element
   }
   
 
@@ -55,17 +54,18 @@ class App extends Component {
     if(this.state.showPersons){
       peronas = (
         <div style={style}>
-        {this.state.persons.map(person => {
+        {this.state.persons.map((person, index) => {
         // convert this array to valid jsx & reder the array with map()
         // will exc a method on the given arr
            return <Person 
                   name={person.name}
-                  age={person.age} /> // return jsx
+                  age={person.age}
+                  click={() => this.deletePersonHandler(index)} /> // return jsx
         })} 
           <h1>Hi I am a React App</h1>
           <p>This is really working</p>
-          <button   
-          onClick={this.switchNameHandler.bind(this, 'Igorka')}>Switch Name</button>
+          {/* <button   
+          onClick={this.switchNameHandler.bind(this, 'Igorka')}>Switch Name</button> */}
           </div>
       )
     }

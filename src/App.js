@@ -22,9 +22,7 @@ class App extends Component {
       {name: 'Archie', age: 2}
     ]});
   }
-  focusHandler = () => {
-    console.log('Was Focused');
-  }
+  
 
   nameChangedHandler = (event) => {
     this.setState({persons: [
@@ -35,50 +33,44 @@ class App extends Component {
   }
 
   togglePersonHandler = () => {
-    const doesShow = this.state.showPersons;
-    this.setState({showPersons: !doesShow});
-    console.log('toggled');
+    const doesShow = this.state.showPersons;// does show is bool false
+    this.setState({showPersons: !doesShow});// assign opposite to the above to toggle
   }
 
   
 
   render() {
 
+    const style = {
+      backgroundColor: '#93B0BA',
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px',
+      cursor: 'pointer'
+    };
+
+
     let peronas = null;
 
     if(this.state.showPersons){
       peronas = (
-        <div>
+        <div style={style}>
+        {this.state.persons.map(person => {
+        // convert this array to valid jsx & reder the array with map()
+        // will exc a method on the given arr
+           return <Person 
+                  name={person.name}
+                  age={person.age} /> // return jsx
+        })} 
           <h1>Hi I am a React App</h1>
-          <p onMouseEnter={this.focusHandler}>This is really working</p>
+          <p>This is really working</p>
           <button   
           onClick={this.switchNameHandler.bind(this, 'Igorka')}>Switch Name</button>
-          <Person 
-            name={this.state.persons[0].name} 
-            age={this.state.persons[0].age}/>
-          <Person 
-            name={this.state.persons[1].name}  
-            age={this.state.persons[1].age}
-            click={this.switchNameHandler.bind(this, 'Igor!') }
-            mousEnt={this.focusHandler}
-            changed={this.nameChangedHandler}
-            >My Hobbies: Racing </Person>
-          <Person 
-          // we can use this but sometime can do some unexpected results prefered to use bind() instead!!!
-            click={() => this.switchNameHandler('Shitzu!!')}
-            name={this.state.persons[2].name} 
-            age={this.state.persons[2].age}/>
           </div>
       )
     }
 
-    // const style = {
-    //   backgroundColor: 'white',
-    //   font: 'inherit',
-    //   border: '1px solid blue',
-    //   padding: '8px',
-    //   cursor: 'pointer'
-    // };
+
     return (
       <div className="App">
         <button onClick={this.togglePersonHandler}>Toggle View</button>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Person from '../Components/Persons/Person/Person';
 import Persons from '../Components/Persons/Persons';
+import Cockpit from '../Components/Cockpit/Cockpit';
 
 class App extends Component {
 
@@ -63,7 +64,7 @@ class App extends Component {
     let peronas = null;
 
     if(this.state.showPersons){
-      peronas = (
+      peronas = ( 
         <div style={style}>
         
         <Persons 
@@ -74,8 +75,7 @@ class App extends Component {
         
         
         
-          <h1>Hi I am a React App</h1>
-          <p>This is really working</p>
+          
           {/* <button   
           onClick={this.switchNameHandler.bind(this, 'Igorka')}>Switch Name</button> */}
           </div>
@@ -85,7 +85,12 @@ class App extends Component {
 
     return (
       <div className="App">
-        <button onClick={this.togglePersonHandler}>Toggle View</button>
+      
+        <Cockpit 
+        title={this.props.title}
+        toggle={this.togglePersonHandler}
+        />
+        
         
         {peronas}
       </div>

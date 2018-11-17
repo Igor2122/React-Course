@@ -5,7 +5,22 @@ import Persons from '../Components/Persons/Persons';
 import Cockpit from '../Components/Cockpit/Cockpit';
 
 class App extends Component {
-
+  
+  constructor(props){
+    super(props);
+    console.log('[App.js] inside construcor', props);
+    // can also initialize the state in the constructor but not reccomended better to use state = {}
+  }
+  
+  componentWillMount(){
+    console.log('[App.js] inside componentWillMount');
+  }
+  
+  componentDivMount(){
+    console.log('[App.js] inside componentDivMount');
+  }
+  
+  
   state = {
     persons: [
       {id: 1, name: 'Igor', age: 32},
@@ -51,7 +66,7 @@ class App extends Component {
   }  
 
   render() {
-
+    console.log('[App.js] inside render');
     const style = {
       backgroundColor: '#93B0BA',
       font: 'inherit',

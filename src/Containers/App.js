@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from './Person/Person';
+import Person from '../Components/Persons/Person/Person';
+import Persons from '../Components/Persons/Persons';
 
 class App extends Component {
 
@@ -64,17 +65,15 @@ class App extends Component {
     if(this.state.showPersons){
       peronas = (
         <div style={style}>
-        {this.state.persons.map((person, index) => {
-        // convert this array to valid jsx & reder the array with map()
-        // will exc a method on the given arr
-           return <Person 
-                  id={person.id}
-                  name={person.name}
-                  age={person.age}
-                  click={() => this.deletePersonHandler(index)} 
-                  key={person.id}
-                  changed={(event) => this.nameChangedHandler(event,person.id)}/> // return jsx
-        })} 
+        
+        <Persons 
+          persons={this.state.persons}
+          clicked={this.deletePersonHandler}
+          changed={this.nameChangedHandler}
+        />
+        
+        
+        
           <h1>Hi I am a React App</h1>
           <p>This is really working</p>
           {/* <button   

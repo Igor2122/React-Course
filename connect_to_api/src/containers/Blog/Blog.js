@@ -10,8 +10,10 @@ class Blog extends Component {
     
     state = {
         posts: [],
-        selectedPostId: null
+        selectedPostId: null,
+        error: false
     }
+    
         
     componentDidMount () {
         axios.get('https://jsonplaceholder.typicode.com/posts')
@@ -23,9 +25,12 @@ class Blog extends Component {
                 return {
                     ...post,
                     author: 'Igor'
-                }
-            })
+                };
+            });
             this.setState({posts: updatedPosts}); // here we pass a modyfied object with added atuthor
+        })
+        .catch( error => {
+            this.setState({error: true});
         });
     }
     
@@ -35,7 +40,9 @@ class Blog extends Component {
 
     render () {
         
-        const allposts = this.state.posts.map(
+        let allposts = <p style={{textAlign: 'center'}}>Soemthing went wrong ... </p>;
+        if(!this.state.error){
+            allposts = this.state.posts.map(
             post => {
                 return <Post
                     clicked={() => this.postSelectedHandler(post.id)} // here we can select the post id
@@ -43,7 +50,9 @@ class Blog extends Component {
                     title={post.title}
                     author={post.author}/>;
             }    
-        );
+        );    
+        }
+        
         
       
         return (
@@ -52,7 +61,8 @@ class Blog extends Component {
                     {allposts}
                 </section>
                 <section>
-                    <FullPost id={this.state.selectedPostId}/>
+                    <FullPost 
+                        id={this.state.selectedPostId}/>
                 </section>
                 <section>
                     <NewPost />

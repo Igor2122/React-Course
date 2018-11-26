@@ -18,7 +18,7 @@ class Blog extends Component {
             <header>
                 <nav>
                     <ul>
-                        <li><NavLink to="/">Home</NavLink></li>
+                        <li><NavLink to="/" exact activeClassName="my-active">Home</NavLink></li>
                         <li><NavLink to={{
                             pathname:  "/new-post", // relative path(takes the cur path + new) 
                             hash: '#submit', // examples

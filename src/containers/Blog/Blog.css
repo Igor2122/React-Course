@@ -5,3 +5,8 @@
     width: 80%;
     margin: auto;
 }
+
+.Post:hover,
+.Post:active {
+    background-color: #C0DDF5;
+}

@@ -10,7 +10,7 @@ class FullPost extends Component {
     }
     
     componentDidMount () {
-        console.log(this.props);
+        // console.log(this.props);
         if(this.props.match.params.id){
         // Prevent the infinite loop of requests
             if(!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.id) ){

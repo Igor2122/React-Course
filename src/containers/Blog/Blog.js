@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 // import axios from 'axios';
 // import axios from '../../axios';
 
-import { Route, NavLink } from 'react-router-dom';
+import { Route, NavLink, Switch } from 'react-router-dom';
 import './Blog.css';
 import Posts from './Posts/Posts';
 import NewPost from './NewPost/NewPost'
-import fullPos from './FullPost/FullPost';
 import FullPost from './FullPost/FullPost';
 
 class Blog extends Component {
@@ -31,8 +30,10 @@ class Blog extends Component {
             </header>
             { /* <Route path="/" exact render={() => <h1>Home</h1>} /> */ }
             <Route path="/" exact component={Posts} />
-            <Route path="/new-post" component={NewPost} />
-            <Route path="/:id" exact component={FullPost} />
+            <Switch> { /* will load the first matched route only order will be very important here we can mix and match as we want  */ }
+                <Route path="/new-post" component={NewPost} />
+                <Route path="/:id" exact component={FullPost} />
+            </Switch>
             </div>
         );
     }

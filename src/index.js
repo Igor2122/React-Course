@@ -12,7 +12,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/json'; // this is a d
 
 // HANDLING THE REQEUSTS 
 axios.interceptors.request.use(request => { // this is a request config
-    console.log(request);
+    // console.log(request);
     // we need to always return the request 
     
     return request;
@@ -24,7 +24,7 @@ axios.interceptors.request.use(request => { // this is a request config
 
 // HANDLING THE RESPONSES
 axios.interceptors.response.use(response => {
-    console.log(response);
+    // console.log(response);
     return response;
 }, error => { // we can also pass the error funtion 
     console.log(error);

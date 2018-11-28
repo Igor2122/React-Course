@@ -19,7 +19,7 @@ class Blog extends Component {
             <header>
                 <nav>
                     <ul>
-                        <li><NavLink to="/" exact activeClassName="my-active">Home</NavLink></li>
+                        <li><NavLink to="/" exact activeClassName="my-active">Posts</NavLink></li>
                         <li><NavLink to={{
                             pathname:  "/new-post", // relative path(takes the cur path + new) 
                             hash: '#submit', // examples
@@ -33,6 +33,7 @@ class Blog extends Component {
             <Switch> { /* will load the first matched route only order will be very important here we can mix and match as we want  */ }
                 <Route path="/new-post" component={NewPost} />
                 <Route path="/:id" exact component={FullPost} />
+                
             </Switch>
             </div>
         );

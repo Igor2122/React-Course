@@ -23,7 +23,7 @@ class Blog extends Component {
 
     
     render () {
-        
+        // assunc component added
         let newPost = null;
         if(this.state.auth){
             newPost = <Route path="/new-post"  component={AsyncNewPost} />

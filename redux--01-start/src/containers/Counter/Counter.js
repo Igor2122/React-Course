@@ -26,13 +26,14 @@ class Counter extends Component {
                 break;
         }
     }
-
+    
     render () {
+        
         return (
             <div>
                 <CounterOutput value={this.props.ctr} />
-                <CounterControl label="Increment" clicked={() => this.counterChangedHandler( 'inc' )} />
-                <CounterControl label="Decrement" clicked={() => this.counterChangedHandler( 'dec' )}  />
+                <CounterControl label="Increment" clicked={this.props.onIncrimentCounter} />
+                <CounterControl label="Decrement" clicked={this.props.onDecrimentCounter}  />
                 <CounterControl label="Add 5" clicked={() => this.counterChangedHandler( 'add', 5 )}  />
                 <CounterControl label="Subtract 5" clicked={() => this.counterChangedHandler( 'sub', 5 )}  />
             </div>
@@ -40,10 +41,19 @@ class Counter extends Component {
     }
 }
 
+
 const mapStateToProps = state => {
     return  {
       ctr: state.counter   
     };
 };
 
-export default connect(mapStateToProps)(Counter);
+// reat-redux gives us dispatch function that will call dispatch on the store 
+const mapDispatchToProps = dispatch => {
+    return {
+        onIncrimentCounter: () => dispatch({type: 'INCRIMENT'}),
+        onDecrimentCounter: () => dispatch({type: 'DECREMENT'})
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);

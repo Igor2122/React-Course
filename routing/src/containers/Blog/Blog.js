@@ -29,11 +29,10 @@ class Blog extends Component {
                 </nav>  
             </header>
             { /* <Route path="/" exact render={() => <h1>Home</h1>} /> */ }
-            <Route path="/" exact component={Posts} />
+             <Route path="/" exact component={Posts} />
             <Switch> { /* will load the first matched route only order will be very important here we can mix and match as we want  */ }
                 <Route path="/new-post" component={NewPost} />
                 <Route path="/:id" exact component={FullPost} />
-                
             </Switch>
             </div>
         );

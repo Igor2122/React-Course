@@ -5,28 +5,7 @@ import CounterControl from '../../components/CounterControl/CounterControl';
 import CounterOutput from '../../components/CounterOutput/CounterOutput';
 
 class Counter extends Component {
-    state = {
-        counter: 0
-    }
 
-    counterChangedHandler = ( action, value ) => {
-        // eslint-disable-next-line
-        switch ( action ) {
-            case 'inc':
-                this.setState( ( prevState ) => { return { counter: prevState.counter + 1 } } )
-                break;
-            case 'dec':
-                this.setState( ( prevState ) => { return { counter: prevState.counter - 1 } } )
-                break;
-            case 'add':
-                this.setState( ( prevState ) => { return { counter: prevState.counter + value } } )
-                break;
-            case 'sub':
-                this.setState( ( prevState ) => { return { counter: prevState.counter - value } } )
-                break;
-        }
-    }
-    
     render () {
         
         return (
@@ -34,8 +13,8 @@ class Counter extends Component {
                 <CounterOutput value={this.props.ctr} /> {/* we get props frp mapStateToProps got from Rdux  */}
                 <CounterControl label="Increment" clicked={this.props.onIncrimentCounter} />
                 <CounterControl label="Decrement" clicked={this.props.onDecrimentCounter}  />
-                <CounterControl label="Add 5" clicked={this.props.onAddCounter}  />
-                <CounterControl label="Subtract 5" clicked={this.props.onSubstrCounter}  />
+                <CounterControl label="Add 10" clicked={this.props.onAddCounter}  />
+                <CounterControl label="Subtract 15" clicked={this.props.onSubstrCounter}  />
             </div>
         );
     }
@@ -53,10 +32,10 @@ const mapStateToProps = state => { // state - stored in Redux
 const mapDispatchToProps = dispatch => {
     return {
         // name is up to us 
-        onIncrimentCounter: () => dispatch({type: 'INCRIMENT'}),
+        onIncrimentCounter: () => dispatch({type: 'INCRIMENT'}),// type is mandatory afrter we can iclude anything 
         onDecrimentCounter: () => dispatch({type: 'DECREMENT'}),
-        onAddCounter: () => dispatch({type: 'ADD5COUNTER'}),
-        onSubstrCounter: () => dispatch({type: 'DECREMENT5COUNTER'})
+        onAddCounter: () => dispatch({type: 'ADD5COUNTER', val: 10}), // payload as a convention 
+        onSubstrCounter: () => dispatch({type: 'DECREMENT5COUNTER', val: 15})
     };
 };
 

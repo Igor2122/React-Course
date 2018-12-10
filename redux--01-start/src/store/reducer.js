@@ -18,13 +18,13 @@ const reducer = (state = initialState, action) => {
     if(action.type === 'ADD5COUNTER'){
         return{
             ...state,
-            counter: state.counter + 5,
+            counter: state.counter + action.val,// the property val comes from the counter container
         }
     }
     if(action.type === 'DECREMENT5COUNTER'){
         return {
             ...state,
-            counter: state.counter -5,
+            counter: state.counter - action.val,
         }
     }
     

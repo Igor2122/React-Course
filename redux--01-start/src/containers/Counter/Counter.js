@@ -15,6 +15,13 @@ class Counter extends Component {
                 <CounterControl label="Decrement" clicked={this.props.onDecrimentCounter}  />
                 <CounterControl label="Add 10" clicked={this.props.onAddCounter}  />
                 <CounterControl label="Subtract 15" clicked={this.props.onSubstrCounter}  />
+                <hr />
+                <button onClick={this.props.onStoreResult}>Store Result</button>
+                <ul>
+                    
+                    {this.props.storedResults.map(res =>(
+                    <li key={res.id} onClick={this.props.onDeleteResult}>{res.val}</li>))}
+                </ul>
             </div>
         );
     }
@@ -23,7 +30,8 @@ class Counter extends Component {
 // here we define the state we want to get with { connect };  here we get Rdux state to props passsed on our component 
 const mapStateToProps = state => { // state - stored in Redux
     return  {
-      ctr: state.counter   // state will be given by Redux; ctr-our defined name
+      ctr: state.counter,   // state will be given by Redux; ctr-our defined name
+      storedResults: state.results // retreving results fromt the reducer
     };
 };
 
@@ -35,7 +43,9 @@ const mapDispatchToProps = dispatch => {
         onIncrimentCounter: () => dispatch({type: 'INCRIMENT'}),// type is mandatory afrter we can iclude anything 
         onDecrimentCounter: () => dispatch({type: 'DECREMENT'}),
         onAddCounter: () => dispatch({type: 'ADD5COUNTER', val: 10}), // payload as a convention 
-        onSubstrCounter: () => dispatch({type: 'DECREMENT5COUNTER', val: 15})
+        onSubstrCounter: () => dispatch({type: 'DECREMENT5COUNTER', val: 15}),
+        onStoreResult: () => dispatch({type:  'STORE_RESULT'}),
+        onDeleteResult: () => dispatch({type:  'DELETE_RESULT'}),
     };
 };
 

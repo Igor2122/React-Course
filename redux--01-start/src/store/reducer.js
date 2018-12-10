@@ -37,6 +37,12 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 results: state.results.concat({id: new Date(), val:state.counter})// we do not use push as it will 
             }
+        case 'DELETE_RESULT':
+            const newArr = state.results.filter(result =>  result.id !== action.resElId); // we are seinding here from conter.js
+            return {
+                ...state,
+                results: newArr
+            }
     }
     // eslint-disable-next-line
    return state; // all the app state will come to single reducer, if not handled in the current switch we return the current state in order not to break our application 

@@ -1,3 +1,6 @@
+// importing the actions 
+import * as actionTypes from  './actions';
+
 const initialState = {
     counter: 0,
     results: []
@@ -6,7 +9,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     // eslint-disable-next-line
     switch (action.type) {
-        case 'INCRIMENT':
+        case actionTypes.INCRIMENT:
             // ...state is the same as we would do: so here we update the state in enumerable way 
                         /* 
                     const newStae = Object.assign({}, state);
@@ -17,27 +20,27 @@ const reducer = (state = initialState, action) => {
             ...state, // we don't have to pass it 
             counter: state.counter + 1,
         }
-        case 'DECREMENT':
+        case actionTypes.DECREMENT:
             return {
             ...state,
             counter: state.counter - 1,
         }
-        case 'ADD5COUNTER':
+        case actionTypes.ADD:
             return{
             ...state,
             counter: state.counter + action.val,// the property val comes from the counter container
         }
-        case 'DECREMENT5COUNTER':
+        case actionTypes.SUBTRACT:
             return {
             ...state,
             counter: state.counter - action.val,
         }
-        case 'STORE_RESULT': 
+        case actionTypes.STORE_RESULT: 
             return{
                 ...state,
                 results: state.results.concat({id: new Date(), val:state.counter})// we do not use push as it will 
             }
-        case 'DELETE_RESULT':
+        case actionTypes.DELETE_RESULT:
             const newArr = state.results.filter(result =>  result.id !== action.resElId); // we are seinding here from conter.js
             return {
                 ...state,

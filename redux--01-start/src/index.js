@@ -6,10 +6,10 @@ import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import reducer from './store/reducer';
+import reducer from './store/reducer'; // added the reducer where we manage & instantiate the state  
+ 
+const store = createStore(reducer); // inported above 
 
-const store = createStore(reducer);
 
-
-ReactDOM.render(<Provider store={store} ><App /></Provider>, document.getElementById('root'));
+ReactDOM.render(<Provider store={store} ><App /></Provider>, document.getElementById('root'));// def property expected store; now the store is connceted to our ap
 registerServiceWorker();

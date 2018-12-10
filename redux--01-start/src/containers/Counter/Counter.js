@@ -31,28 +31,32 @@ class Counter extends Component {
         
         return (
             <div>
-                <CounterOutput value={this.props.ctr} />
+                <CounterOutput value={this.props.ctr} /> {/* we get props frp mapStateToProps got from Rdux  */}
                 <CounterControl label="Increment" clicked={this.props.onIncrimentCounter} />
                 <CounterControl label="Decrement" clicked={this.props.onDecrimentCounter}  />
-                <CounterControl label="Add 5" clicked={() => this.counterChangedHandler( 'add', 5 )}  />
-                <CounterControl label="Subtract 5" clicked={() => this.counterChangedHandler( 'sub', 5 )}  />
+                <CounterControl label="Add 5" clicked={this.props.onAddCounter}  />
+                <CounterControl label="Subtract 5" clicked={this.props.onSubstrCounter}  />
             </div>
         );
     }
 }
 
-
-const mapStateToProps = state => {
+// here we define the state we want to get with { connect };  here we get Rdux state to props passsed on our component 
+const mapStateToProps = state => { // state - stored in Redux
     return  {
-      ctr: state.counter   
+      ctr: state.counter   // state will be given by Redux; ctr-our defined name
     };
 };
 
 // reat-redux gives us dispatch function that will call dispatch on the store 
+// we mention here which kind of acitons we want to dispatch on our container
 const mapDispatchToProps = dispatch => {
     return {
+        // name is up to us 
         onIncrimentCounter: () => dispatch({type: 'INCRIMENT'}),
-        onDecrimentCounter: () => dispatch({type: 'DECREMENT'})
+        onDecrimentCounter: () => dispatch({type: 'DECREMENT'}),
+        onAddCounter: () => dispatch({type: 'ADD5COUNTER'}),
+        onSubstrCounter: () => dispatch({type: 'DECREMENT5COUNTER'})
     };
 };
 

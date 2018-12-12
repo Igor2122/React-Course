@@ -33,7 +33,7 @@ const counterReducer = (state = initialState, action) => {
             return {
             ...state,
             counter: state.counter - action.val,
-        }
+        };
     }
     // eslint-disable-next-line
    return state; // all the app state will come to single reducer, if not handled in the current switch we return the current state in order not to break our application 

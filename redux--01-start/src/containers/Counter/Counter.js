@@ -33,7 +33,7 @@ class Counter extends Component {
 const mapStateToProps = state => { // state - stored in Redux
     return  {
       ctr: state.ctr.counter,   // state will be given by Redux; ctr-our defined name
-      storedResults: state.res  .results // retreving results fromt the reducer
+      storedResults: state.res.results // retreving results fromt the reducer
     };
 };
 

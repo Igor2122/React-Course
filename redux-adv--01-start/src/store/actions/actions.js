@@ -28,10 +28,20 @@ export const subtract = (value) => { // can receive any payloads if we want to s
       val: value
    }
 }
-export const storeResult = (res) => { // can receive any payloads if we want to send with action 
+
+export const saveResult = ( res ) => {
    return {
       type: STORE_RESULT,
       result: res
+   }
+}
+
+export const storeResult = (res) => { // can receive any payloads if we want to send with action 
+   return disptch => {
+
+      setTimeout(() =>{
+         disptch(saveResult(res))
+      } ,2000)
    }
 }
 export const deleteResult = (resultElId) => { // can receive any payloads if we want to send with action 

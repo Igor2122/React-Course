@@ -1,12 +1,11 @@
 export const INCREMENT = 'INCREMENT';
-export const DECREMENT = 'DECREMENT';
+export const DECREMENT = 'DECREMENT';  
 export const ADD = 'ADD';
 export const SUBTRACT = 'SUBTRACT';
 export const STORE_RESULT = 'STORE_RESULT';
 export const DELETE_RESULT = 'DELETE_RESULT';
 
 // ACTION CREATORS - runction that creates and aciton 
-
 export const increment = () => { // can receive any payloads if we want to send with action 
    return {
       type: INCREMENT 
@@ -17,23 +16,27 @@ export const decrement = () => { // can receive any payloads if we want to send 
       type: DECREMENT
    }
 }
-export const add = () => { // can receive any payloads if we want to send with action 
+export const add = (val) => { // can receive any payloads if we want to send with action 
    return {
-      type: ADD
+      type: ADD,
+      val: val
    }
 }
-export const subtract = () => { // can receive any payloads if we want to send with action 
+export const subtract = (value) => { // can receive any payloads if we want to send with action 
    return {
-      type: SUBTRACT
+      type: SUBTRACT,
+      val: value
    }
 }
-export const storeResult = () => { // can receive any payloads if we want to send with action 
+export const storeResult = (res) => { // can receive any payloads if we want to send with action 
    return {
-      type: STORE_RESULT
+      type: STORE_RESULT,
+      result: res
    }
 }
-export const deleteResult = () => { // can receive any payloads if we want to send with action 
+export const deleteResult = (resultElId) => { // can receive any payloads if we want to send with action 
    return {
-      type: DELETE_RESULT
+      type: DELETE_RESULT,
+      resultElId: resultElId
    }
 }

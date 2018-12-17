@@ -11,9 +11,12 @@ export const saveResult = ( res ) => {
 }
 
 export const storeResult = (res) => { // can receive any payloads if we want to send with action 
-   return disptch => {
+   return (disptch, getState) => {
 
       setTimeout(() =>{
+         const oldCounter = getState().ctr.counter;
+         console.log(oldCounter);
+         
          disptch(saveResult(res))
       } ,2000)
    }

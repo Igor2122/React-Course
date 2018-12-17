@@ -5,6 +5,13 @@ const initialState = {
     results: []
 };
 
+// utility function to make the switch statement leaner in this case we keep it inside the file to make it easier 
+const deleteResult = (state, action) => {
+    const updatedArray = state.results.filter(result => result.id !== action.resultElId);
+    return updateObject(state, {results: updatedArray});
+}
+
+
 const reducer = ( state = initialState, action ) => {
     // eslint-disable-next-line
     switch ( action.type ) {
@@ -19,8 +26,8 @@ const reducer = ( state = initialState, action ) => {
             // const id = 2;
             // const newArray = [...state.results];
             // newArray.splice(id, 1)
-            const updatedArray = state.results.filter(result => result.id !== action.resultElId);
-            return updateObject(state, {results: updatedArray});
+            
+            return deleteResult(state, action);
             // return {
             //     ...state,
             //     results: updatedArray
